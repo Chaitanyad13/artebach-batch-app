@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!--
+				output for logger status :
+				LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+				StatusPrinter.print(lc); 
+			 -->
+			<!--
+			%p level of the logging event
+			%t name of the thread
+			%logger name of the logger
+			%class (slows down the execution)
+			%method (slows down the execution)
+			%m message to log
+			%n append '\n' for 'new line'
+			-->
+			<pattern>%d{dd.MM HH:mm:ss.SSS} %-14t [%p] %logger{15} - %m%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
+		 <file>/MIDDLELOGS/ubz_sips_internal/ubz-artebatch/artebatch-batch.log</file>
+		<encoder>
+			<pattern>%d{dd.MM HH:mm:ss.SSS} %-14t [%p] %logger{15} - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!--  htmlUnit logs : OFF -->
+	<logger name="com.gargoylesoftware" level="OFF" additivity="false">
+		<appender-ref ref="ConsoleAppender" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="ConsoleAppender"/>
+	</root>
+	
+	<root level="DEBUG">
+		<appender-ref ref="FileAppender"/>
+	</root>
+
+</configuration>
